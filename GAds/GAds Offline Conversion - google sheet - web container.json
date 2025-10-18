@@ -1,0 +1,284 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2025-10-18 17:34:24",
+    "containerVersion": {
+        "path": "accounts/6317141269/containers/232256149/versions/0",
+        "accountId": "6317141269",
+        "containerId": "232256149",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/6317141269/containers/232256149",
+            "accountId": "6317141269",
+            "containerId": "232256149",
+            "name": "web / bdbg store",
+            "publicId": "GTM-WCLG8VDJ",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1760340172356",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/6317141269/containers/232256149/workspaces?apiLink=container",
+            "features": {
+                "supportUserPermissions": true,
+                "supportEnvironments": true,
+                "supportWorkspaces": true,
+                "supportGtagConfigs": false,
+                "supportBuiltInVariables": true,
+                "supportClients": false,
+                "supportFolders": true,
+                "supportTags": true,
+                "supportTemplates": true,
+                "supportTriggers": true,
+                "supportVariables": true,
+                "supportVersions": true,
+                "supportZones": true,
+                "supportTransformations": false
+            },
+            "tagIds": [
+                "GTM-WCLG8VDJ"
+            ]
+        },
+        "tag": [
+            {
+                "accountId": "6317141269",
+                "containerId": "232256149",
+                "tagId": "67",
+                "name": "Store GCLID in LocalStorage",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n\nfunction getParam(p) {\nvar match = RegExp('[?&]' + p + '=([^&]*)').exec(window.location.search);\nreturn match && decodeURIComponent(match[1].replace(/\\+/g, ' '));\n}\n\nfunction getExpiryRecord(value) {\nvar expiryPeriod = 90 * 24 * 60 * 60 * 1000; // 90 day expiry in milliseconds\n\nvar expiryDate = new Date().getTime() + expiryPeriod;\nreturn {\nvalue: value,\nexpiryDate: expiryDate\n};\n}\n\nfunction addGclid() {\nvar gclidParam = getParam('gclid');\nvar gclidRecord = null;\n\n\nvar gclsrcParam = getParam('gclsrc');\nvar isGclsrcValid = !gclsrcParam || gclsrcParam.indexOf('aw') !== -1;\n\n\nif (gclidParam && isGclsrcValid) {\ngclidRecord = getExpiryRecord(gclidParam);\nlocalStorage.setItem('gclid', JSON.stringify(gclidRecord));\n}\n\n\n}\n\naddGclid(); \n //window.addEventListener('load', addGclid);\n\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1760806322001",
+                "firingTriggerId": [
+                    "70"
+                ],
+                "parentFolderId": "73",
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6317141269",
+                "containerId": "232256149",
+                "tagId": "68",
+                "name": "Send GCLID Conversion Data to Google Script",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n(function(){\n  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbztfY7LkOzAQgil9uPjRjYmYgyuPy6Repn4r7VuhFjrjLdPrMRKLelMjshlNO2OxPiw/exec';\n\n  // --- Get values from localStorage ---\n  function getLS(key){ try { return localStorage.getItem(key) || ''; } catch(e){ return ''; } }\n  var hashed_email = getLS('hashed_email');\n  var hashed_phone_number = getLS('hashed_phone');\n  var gclid = '';\n  try {\n    var raw = localStorage.getItem('gclid');\n    if (raw) {\n      var parsed = JSON.parse(raw);\n      gclid = parsed && parsed.value ? parsed.value : parsed;\n    }\n  } catch(e){ gclid = raw || ''; }\n\n  // --- Format timestamp ---\n  function formatDate(d){\n    function p(n){return (n<10?'0':'')+n;}\n    return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds());\n  }\n  var conversion_event_time = formatDate(new Date());\n\n  // --- Build query string ---\n  function qs(obj){\n    var arr=[],k;\n    for(k in obj){ if(obj.hasOwnProperty(k)) arr.push(encodeURIComponent(k)+'='+encodeURIComponent(obj[k])); }\n    return arr.join('&');\n  }\n\n  // --- Send data only if valid ---\n  if (hashed_email || hashed_phone_number || gclid) {\n    var url = SCRIPT_URL + '?' + qs({\n      gclid: gclid,\n      conversion_event_time: conversion_event_time,\n      hashed_email: hashed_email,\n      hashed_phone_number: hashed_phone_number\n    });\n\n    var xhr = new XMLHttpRequest();\n    xhr.open('GET', url, true);\n    xhr.send();\n  }\n})();\n</script>\n"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1760807490552",
+                "firingTriggerId": [
+                    "69"
+                ],
+                "setupTag": [
+                    {
+                        "tagName": "Send Email and Phone to localstorage",
+                        "stopOnSetupFailure": true
+                    }
+                ],
+                "parentFolderId": "73",
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6317141269",
+                "containerId": "232256149",
+                "tagId": "74",
+                "name": "Send Email and Phone to localstorage",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\n(function(){\n  // --- Select your fields ---\n  var emailEl = document.querySelector('#ContactForm-email');\n  var phoneEl = document.querySelector('#ContactForm-phone');\n  if (!emailEl && !phoneEl) return;\n\n  // --- Helper: UTF-8 encode ---\n  function encodeUTF8(str){\n    if (window.TextEncoder) return new TextEncoder().encode(str);\n    var out=[],p=0,i,c;\n    for(i=0;i<str.length;i++){c=str.charCodeAt(i);\n      if(c<128) out[p++]=c;\n      else if(c<2048){out[p++]=(c>>6)|192; out[p++]=(c&63)|128;}\n      else{out[p++]=(c>>12)|224; out[p++]=((c>>6)&63)|128; out[p++]=(c&63)|128;}\n    }\n    return new Uint8Array(out);\n  }\n\n  // --- Helper: SHA-256 hash to hex ---\n  function sha256Hex(str){\n    if(!window.crypto||!window.crypto.subtle){return Promise.resolve('');}\n    return window.crypto.subtle.digest('SHA-256', encodeUTF8(str)).then(function(buf){\n      var bytes=new Uint8Array(buf),hex='',i,h;\n      for(i=0;i<bytes.length;i++){h=bytes[i].toString(16);hex+=(h.length===1?'0'+h:h);}\n      return hex;\n    });\n  }\n\n  // --- Normalize functions ---\n  function normEmail(v){return (v||'').replace(/^\\s+|\\s+$/g,'').toLowerCase();}\n  function normPhone(v){return (v||'').replace(/[^\\d]/g,'');}\n\n  var emailVal = normEmail(emailEl ? emailEl.value : '');\n  var phoneVal = normPhone(phoneEl ? phoneEl.value : '');\n\n  // --- Hash and store in localStorage ---\n  Promise.all([\n    emailVal ? sha256Hex(emailVal) : Promise.resolve(''),\n    phoneVal ? sha256Hex(phoneVal) : Promise.resolve('')\n  ]).then(function(res){\n    try {\n      if(res[0]) localStorage.setItem('hashed_email', res[0]);\n      if(res[1]) localStorage.setItem('hashed_phone', res[1]);\n      console.log('Hashed values stored in localStorage');\n    } catch(e) {\n      console.error('Failed to store hashed data', e);\n    }\n  });\n})();\n</script>\n"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1760807301039",
+                "firingTriggerId": [
+                    "75"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "6317141269",
+                "containerId": "232256149",
+                "triggerId": "69",
+                "name": "contact form submitted",
+                "type": "WINDOW_LOADED",
+                "filter": [
+                    {
+                        "type": "CONTAINS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Page URL}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "contact_posted=true"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1760783141278"
+            },
+            {
+                "accountId": "6317141269",
+                "containerId": "232256149",
+                "triggerId": "70",
+                "name": "Window Loaded",
+                "type": "WINDOW_LOADED",
+                "fingerprint": "1760783012664"
+            },
+            {
+                "accountId": "6317141269",
+                "containerId": "232256149",
+                "triggerId": "75",
+                "name": "form submit btn clicked",
+                "type": "CLICK",
+                "filter": [
+                    {
+                        "type": "CSS_SELECTOR",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Click Element}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "#ContactForm > div.contact__button > button"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1760807838024"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "6317141269",
+                "containerId": "232256149",
+                "variableId": "71",
+                "name": "cjs form email",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function() {\n    return document.querySelector('#ContactForm-email').value;\n    \n}\n"
+                    }
+                ],
+                "fingerprint": "1760804230310",
+                "formatValue": {}
+            },
+            {
+                "accountId": "6317141269",
+                "containerId": "232256149",
+                "variableId": "72",
+                "name": "cjs form phone_number",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function() {\n    return document.querySelector('#ContactForm-phone').value;\n    \n}\n"
+                    }
+                ],
+                "fingerprint": "1760804270333",
+                "formatValue": {}
+            }
+        ],
+        "folder": [
+            {
+                "accountId": "6317141269",
+                "containerId": "232256149",
+                "folderId": "73",
+                "name": "gads offline conv",
+                "fingerprint": "1760806317870"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "6317141269",
+                "containerId": "232256149",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "6317141269",
+                "containerId": "232256149",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "6317141269",
+                "containerId": "232256149",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "6317141269",
+                "containerId": "232256149",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "6317141269",
+                "containerId": "232256149",
+                "type": "EVENT",
+                "name": "Event"
+            },
+            {
+                "accountId": "6317141269",
+                "containerId": "232256149",
+                "type": "CLICK_ELEMENT",
+                "name": "Click Element"
+            }
+        ],
+        "fingerprint": "1760808864537",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/6317141269/containers/232256149/versions/0?apiLink=version"
+    }
+}
