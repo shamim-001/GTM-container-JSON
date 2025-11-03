@@ -1,0 +1,248 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2025-11-03 05:19:50",
+    "containerVersion": {
+        "path": "accounts/6316794338/containers/232067157/versions/0",
+        "accountId": "6316794338",
+        "containerId": "232067157",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/6316794338/containers/232067157",
+            "accountId": "6316794338",
+            "containerId": "232067157",
+            "name": "web/dhaka-store",
+            "publicId": "GTM-KH3ML2CX",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1760089000320",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/6316794338/containers/232067157/workspaces?apiLink=container",
+            "features": {
+                "supportUserPermissions": true,
+                "supportEnvironments": true,
+                "supportWorkspaces": true,
+                "supportGtagConfigs": false,
+                "supportBuiltInVariables": true,
+                "supportClients": false,
+                "supportFolders": true,
+                "supportTags": true,
+                "supportTemplates": true,
+                "supportTriggers": true,
+                "supportVariables": true,
+                "supportVersions": true,
+                "supportZones": true,
+                "supportTransformations": false
+            },
+            "tagIds": [
+                "GTM-KH3ML2CX"
+            ]
+        },
+        "tag": [
+            {
+                "accountId": "6316794338",
+                "containerId": "232067157",
+                "tagId": "90",
+                "name": "cHTML - Calendly Listener",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\nwindow.dataLayer = window.dataLayer ||[];\nwindow.addEventListener('message',\n  function(e) {\n    if (e.data.event && e.data.event.indexOf('calendly') === 0) {\n      window.dataLayer.push({\n        'event' : 'calendly-' + e.data.event.split('.')[1],\n      });\n    }\n  }\n);\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1762144851833",
+                "firingTriggerId": [
+                    "2147479553"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6316794338",
+                "containerId": "232067157",
+                "tagId": "91",
+                "name": "Google Tag",
+                "type": "googtag",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "tagId",
+                        "value": "{{F Measurement ID}}"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "configSettingsTable",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "send_page_view"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "false"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "server_container_url"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "https://qafhwjgp.ina.stape.io"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1762144927522",
+                "firingTriggerId": [
+                    "2147479553"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6316794338",
+                "containerId": "232067157",
+                "tagId": "93",
+                "name": "GA4 SS - generate_lead",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "sendEcommerceData",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "generate_lead"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementIdOverride",
+                        "value": "{{F Measurement ID}}"
+                    }
+                ],
+                "fingerprint": "1762145773515",
+                "firingTriggerId": [
+                    "92"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "6316794338",
+                "containerId": "232067157",
+                "triggerId": "92",
+                "name": "ce - calendly-event_scheduled",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "calendly-event_scheduled"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1762145643754"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "6316794338",
+                "containerId": "232067157",
+                "variableId": "76",
+                "name": "F Measurement ID",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "G-5ZGCPFAKE"
+                    }
+                ],
+                "fingerprint": "1761619112254",
+                "formatValue": {}
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "6316794338",
+                "containerId": "232067157",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "6316794338",
+                "containerId": "232067157",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "6316794338",
+                "containerId": "232067157",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "6316794338",
+                "containerId": "232067157",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "6316794338",
+                "containerId": "232067157",
+                "type": "EVENT",
+                "name": "Event"
+            }
+        ],
+        "fingerprint": "1762147190501",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/6316794338/containers/232067157/versions/0?apiLink=version"
+    }
+}

@@ -1,0 +1,198 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2025-11-03 05:21:28",
+    "containerVersion": {
+        "path": "accounts/6316794338/containers/232065622/versions/0",
+        "accountId": "6316794338",
+        "containerId": "232065622",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/6316794338/containers/232065622",
+            "accountId": "6316794338",
+            "containerId": "232065622",
+            "name": "server/dhaka-store",
+            "publicId": "GTM-P629KB55",
+            "usageContext": [
+                "SERVER"
+            ],
+            "fingerprint": "1760089435651",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/6316794338/containers/232065622/workspaces?apiLink=container",
+            "features": {
+                "supportUserPermissions": true,
+                "supportEnvironments": true,
+                "supportWorkspaces": true,
+                "supportGtagConfigs": false,
+                "supportBuiltInVariables": true,
+                "supportClients": true,
+                "supportFolders": true,
+                "supportTags": true,
+                "supportTemplates": true,
+                "supportTriggers": true,
+                "supportVariables": true,
+                "supportVersions": true,
+                "supportZones": true,
+                "supportTransformations": true
+            },
+            "tagIds": [
+                "GTM-P629KB55"
+            ],
+            "taggingServerUrls": [
+                "https://qafhwjgp.ina.stape.io"
+            ]
+        },
+        "tag": [
+            {
+                "accountId": "6316794338",
+                "containerId": "232065622",
+                "tagId": "34",
+                "name": "Google Analytics GA4",
+                "type": "sgtmgaaw",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "redactVisitorIp",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "epToIncludeDropdown",
+                        "value": "all"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "upToIncludeDropdown",
+                        "value": "all"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementId",
+                        "value": "{{Measurement ID*}}"
+                    }
+                ],
+                "fingerprint": "1761711067456",
+                "firingTriggerId": [
+                    "33"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "6316794338",
+                "containerId": "232065622",
+                "triggerId": "33",
+                "name": "GA4 Client",
+                "type": "ALWAYS",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Client Name}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "GA4"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1761711057770"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "6316794338",
+                "containerId": "232065622",
+                "variableId": "32",
+                "name": "Measurement ID*",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "G-5ZGCP8ZGMQ"
+                    }
+                ],
+                "fingerprint": "1761710999612",
+                "parentFolderId": "22",
+                "formatValue": {}
+            }
+        ],
+        "folder": [
+            {
+                "accountId": "6316794338",
+                "containerId": "232065622",
+                "folderId": "22",
+                "name": "config variables",
+                "fingerprint": "1760691130370"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "6316794338",
+                "containerId": "232065622",
+                "type": "CLIENT_NAME",
+                "name": "Client Name"
+            }
+        ],
+        "fingerprint": "1762147288513",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/6316794338/containers/232065622/versions/0?apiLink=version",
+        "client": [
+            {
+                "accountId": "6316794338",
+                "containerId": "232065622",
+                "clientId": "31",
+                "name": "GA4",
+                "type": "gaaw_client",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "cookieDomain",
+                        "value": "auto"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "cookieMaxAgeInSec",
+                        "value": "63072000"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "activateDefaultPaths",
+                        "value": "true"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "cookiePath",
+                        "value": "/"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "migrateFromJsClientId",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "cookieManagement",
+                        "value": "server"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "cookieName",
+                        "value": "FPID"
+                    }
+                ],
+                "fingerprint": "1761644972214"
+            }
+        ]
+    }
+}
